@@ -1,127 +1,344 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Feliz Cumpleaños Karla ✨</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Nunito:wght@400;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
-</head>
+  <title>Preparando algo especial... ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    body {
+      min-height: 100dvh;
+      background: #1a0a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Ubuntu', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── ESTRELLAS FONDO ── */
+    .estrellas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .estrella {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50%       { opacity: 1;   transform: scale(1.4); }
+    }
+
+    /* ── CONFETTI CAYENDO ── */
+    .confetti-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .confetti-wrap span {
+      position: absolute;
+      top: -12px;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      animation: caer linear infinite;
+      opacity: 0.8;
+    }
+    .confetti-wrap span:nth-child(1)  { left:4%;  background:#f472b6; animation-duration:5s;   animation-delay:0s;    width:5px; height:5px; border-radius:0; }
+    .confetti-wrap span:nth-child(2)  { left:13%; background:#c084fc; animation-duration:6s;   animation-delay:.7s;   width:8px; height:4px; }
+    .confetti-wrap span:nth-child(3)  { left:22%; background:#fbbf24; animation-duration:4.2s; animation-delay:1.1s;  border-radius:2px; }
+    .confetti-wrap span:nth-child(4)  { left:33%; background:#fb7185; animation-duration:5.5s; animation-delay:1.8s; }
+    .confetti-wrap span:nth-child(5)  { left:44%; background:#a78bfa; animation-duration:4.8s; animation-delay:0.4s;  height:5px; border-radius:0; }
+    .confetti-wrap span:nth-child(6)  { left:55%; background:#f472b6; animation-duration:3.9s; animation-delay:0.9s;  width:9px; height:4px; }
+    .confetti-wrap span:nth-child(7)  { left:64%; background:#fbbf24; animation-duration:5.1s; animation-delay:1.4s; }
+    .confetti-wrap span:nth-child(8)  { left:73%; background:#c084fc; animation-duration:6.2s; animation-delay:0.6s;  border-radius:0; }
+    .confetti-wrap span:nth-child(9)  { left:83%; background:#fb7185; animation-duration:4.4s; animation-delay:2s;    width:5px; height:8px; }
+    .confetti-wrap span:nth-child(10) { left:93%; background:#a78bfa; animation-duration:5.7s; animation-delay:0.2s; }
+    @keyframes caer {
+      0%   { transform: translateY(-10px) rotate(0deg);   opacity:1; }
+      100% { transform: translateY(110vh) rotate(540deg); opacity:0; }
+    }
+
+    /* ── CENTRO ── */
+    .centro {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      padding: 0 28px;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Torta mini */
+    .torta-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      animation: flotarTorta 3s ease-in-out infinite;
+    }
+    @keyframes flotarTorta {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+    .velas-mini {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+    .vela-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .llama-mini {
+      width: 7px; height: 12px;
+      background: radial-gradient(ellipse at 50% 80%, #fff 0%, #fbbf24 40%, #fb923c 80%, transparent 100%);
+      border-radius: 50% 50% 20% 20%;
+      animation: flamear 0.7s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 5px #fbbf24);
+    }
+    .vela-mini .cuerpo { width:7px; height:18px; border-radius:2px; }
+    .vela-mini:nth-child(1) .cuerpo { background: linear-gradient(#f472b6, #c084fc); }
+    .vela-mini:nth-child(2) .cuerpo { background: linear-gradient(#fbbf24, #fb7185); }
+    .vela-mini:nth-child(3) .cuerpo { background: linear-gradient(#a78bfa, #f472b6); }
+    .vela-mini:nth-child(1) .llama-mini { animation-delay:0s; }
+    .vela-mini:nth-child(2) .llama-mini { animation-delay:0.2s; }
+    .vela-mini:nth-child(3) .llama-mini { animation-delay:0.4s; }
+    @keyframes flamear {
+      from { transform: scaleX(1) scaleY(1); }
+      to   { transform: scaleX(0.85) scaleY(1.15); }
+    }
+    .capa-torta-top  { width:80px;  height:28px; background:linear-gradient(#fce7f3,#fbcfe8); border-radius:5px 5px 0 0; }
+    .capa-torta-mid  { width:96px;  height:24px; background:linear-gradient(#f3e8ff,#e9d5ff); }
+    .capa-torta-base { width:110px; height:30px; background:linear-gradient(#fef3c7,#fde68a); border-radius:0 0 8px 8px;
+                       display:flex; align-items:center; justify-content:center;
+                       font-size:0.55rem; font-weight:700; color:#92400e; letter-spacing:1px; }
+    .plato-mini { width:124px; height:9px; background:linear-gradient(#f1f5f9,#e2e8f0); border-radius:50%; margin-top:-1px; box-shadow:0 3px 8px rgba(0,0,0,0.15); }
+
+    /* Títulos */
+    .titulo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.4;
+      letter-spacing: 0.3px;
+    }
+    .titulo span {
+      background: linear-gradient(135deg, #f472b6, #c084fc, #fbbf24);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitulo-carga {
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: #d1b3e8;
+      min-height: 20px;
+      transition: opacity 0.3s;
+    }
+
+    /* Barra */
+    .barra-wrap {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      height: 7px;
+      overflow: hidden;
+    }
+    .barra {
+      height: 100%;
+      width: 0%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #f472b6, #c084fc, #fbbf24);
+      background-size: 200% 100%;
+      animation: shimmerBarra 2s linear infinite;
+      transition: width 0.35s ease;
+    }
+    @keyframes shimmerBarra {
+      0%   { background-position:0% 0%; }
+      100% { background-position:200% 0%; }
+    }
+
+    .porcentaje {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #c084fc;
+      letter-spacing: 1px;
+    }
+
+    /* Puntos */
+    .puntos span {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: #f472b6;
+      border-radius: 50%;
+      margin: 0 3px;
+      animation: bounce 1.1s ease-in-out infinite;
+    }
+    .puntos span:nth-child(2) { animation-delay:0.2s; background:#c084fc; }
+    .puntos span:nth-child(3) { animation-delay:0.4s; background:#fbbf24; }
+    @keyframes bounce {
+      0%,100% { transform:translateY(0); opacity:0.5; }
+      50%      { transform:translateY(-6px); opacity:1; }
+    }
+
+    /* Botón */
+    .btn-entrar {
+      display: none;
+      width: 100%;
+      padding: 15px 32px;
+      background: linear-gradient(135deg, #f472b6, #c084fc);
+      color: white;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(244,114,182,0.35);
+      text-decoration: none;
+      text-align: center;
+      animation: pulsarBtn 1.6s ease-in-out infinite;
+      letter-spacing: 0.5px;
+    }
+    .btn-entrar.visible { display: block; }
+    @keyframes pulsarBtn {
+      0%,100% { transform:scale(1);    box-shadow:0 8px 24px rgba(244,114,182,0.35); }
+      50%      { transform:scale(1.03); box-shadow:0 12px 30px rgba(244,114,182,0.55); }
+    }
+
+    .nota-btn {
+      display: none;
+      font-size: 0.75rem;
+      color: #d1b3e8;
+      font-weight: 300;
+    }
+    .nota-btn.visible { display: block; }
+  </style>
+</head>
 <body>
+
+  <!-- Estrellas generadas por JS -->
+  <div class="estrellas" id="estrellas"></div>
 
   <!-- Confetti -->
   <div class="confetti-wrap" aria-hidden="true">
     <span></span><span></span><span></span><span></span><span></span>
     <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
   </div>
 
-  <div class="page">
+  <div class="centro">
 
-    <!-- Header -->
-    <div class="header">
-      <div class="stars">✨ 🌟 ✨ 🌟 ✨</div>
-      <h1>Feliz Cumpleaños</h1>
-      <p class="subtitle">Karla · Mi Estrellita ✨</p>
-    </div>
-
-    <!-- Cake -->
-    <div class="cake-wrap">
-      <div class="cake">
-        <div class="candles">
-          <div class="candle">
-            <div class="flame"></div>
-            <div class="candle-body"></div>
-          </div>
-          <div class="candle">
-            <div class="flame"></div>
-            <div class="candle-body"></div>
-          </div>
-          <div class="candle">
-            <div class="flame"></div>
-            <div class="candle-body"></div>
-          </div>
-        </div>
-        <div class="cake-top"></div>
-        <div class="cake-mid">
-          <div class="dots">
-            <span></span><span></span><span></span>
-          </div>
-        </div>
-        <div class="cake-base"></div>
-        <div class="plate"></div>
+    <!-- Torta flotante -->
+    <div class="torta-mini">
+      <div class="velas-mini">
+        <div class="vela-mini"><div class="llama-mini"></div><div class="cuerpo"></div></div>
+        <div class="vela-mini"><div class="llama-mini"></div><div class="cuerpo"></div></div>
+        <div class="vela-mini"><div class="llama-mini"></div><div class="cuerpo"></div></div>
       </div>
+      <div class="capa-torta-top"></div>
+      <div class="capa-torta-mid"></div>
+      <div class="capa-torta-base">✨ KARLA ✨</div>
+      <div class="plato-mini"></div>
     </div>
 
-    <!-- Carta -->
-    <div class="card">
-      <span class="card-label">🎀 Una carta para ti 🎀</span>
+    <h1 class="titulo">Se ha preparado algo <span>muy especial</span> para ti...</h1>
+    <p class="subtitulo-carga" id="subtitulo">Cargando ... ✨</p>
 
-      <p>Holi!!!</p>
-      <p>Feliz cumpleaños estrellita hermosa! ✨</p>
-      <p>Recuerdo aquel día en el que comenzó todo, desde que me permití atreverme a iniciar algo nuevo, un deporte
-        nuevo, y lo maravilloso fue que así me arriesgaba y me lanzaba al abismo había alguien que estaba para salvarme
-        y sostenerme para no caer, quién me tuvo paciencia a pesar de todo, pero aunque al inicio había química aún las
-        dos no conectábamos al 100% hasta esa salida a una cafetería "Star plaza", al principio no sabíamos a dónde ir o
-        que comer, no tenía algo planeado pero decimos ir ahí, y pedir esas croquetas de pituca que se volvieron mis
-        favoritas, luego comenzó nuestra charla, y casualmente, quizá sea el destino, la vida o Dios que acomodo
-        perfectamente el día indicado porque nos junto cuando más nos necesitábamos pero no lo sabías, ese día tú
-        estabas pasando por malos días por tu gatito, y yo... Yo había caído en lo que me costó salir, la depresión, por
-        muchas cosas en si, mi familia, algunos problemas que pasaba y el distanciamiento con mis "amigas" que
-        lentamente esas amistades se deterioraron, hablamos un buen ese día, te conté cosas que no físicamente contaba a
-        alguien al igual que tú, y más aún a alguien que recién conocías al igual que yo, terminamos de comer y fuimos
-        hacia la feria, ya era un poco tarde pero al ir en la motito jamás olvidaré lo que me dijiste: <em>"Si necesitas
-          hablar con alguien o decirle a alguien, aquí estoy yo, dímelo a mi, lo siento mucho por tu abuelito, pero no
-          te preocupes, él estará bien"</em></p>
-      <p>Fueron palabras que alumbraron algo que pensé que ya no habría luz, desde ese momento me dí cuenta que en
-        realidad ibas a ser mi amiga. Jamás te voy a comprar con las amistades anteriores que tuve, al contrario, eres
-        todo lo que siempre merecía, sin necesidad de pedir o decir tu supiste ser una amiga y lo valoro muchísimo,
-        nunca pensé encontrar una amistad sincera, pero llegaste tú y no me arrepiento de nada porque todas las
-        decisiones que tomé me llevaron a ti. Espero que toda la felicidad que tú me das a mi, yo también te la esté
-        dando, si algo te molesta de mí dímelo, si algo no te gusta, cuéntame, aquí estoy, aquí estaré siempre, ya no
-        volverás a estar sola.</p>
-      <p>Hoy cumples 1 añito más de vida (mi abuelo dice que es uno menos pero para mí es uno más jsjs), te deseo todo
-        el éxito que la vida nos puede dar y sin dejar de lado la felicidad, te mereces todo, hasta el universo entero,
-        eres una gran hija, nieta, sobrina, prima, AMIGA, que nadie te haga dudar de eso. Te volviste una persona muy
-        importante para mí y eres casi la única de la que mi familia se acuerda (aparte de Bettsy jsjs ella es mi amiga
-        de la infancia y tú de la adolescencia, espero algún día se conozcan sé que también serían muy buenas amigas),
-        discúlpame por no podré compartir este día a tu lado presencialmente, las circunstancias no me lo permiten, pero
-        yo sé que habrán más días, más cumpleaños en los que la pasamos juntas, TE QUIERO MUCHÍSIMO KARLA, espero que no
-        solo sea una etapa nuestra amistad, me dolería muchísimo separarnos.</p>
-      <p>Feliz cumpleaños preciosa! Y no, no es un día normal o un día más, es un recuerdo de que un día como hoy
-        llegaste a este mundo con un propósito. Te quiero, te quiero. Gracias por todo, gracias por las tardes de
-        plática, las noches de llamadas, las mañanas de buenos días y sobre todo los recuerdos que me regalaste, los
-        viajes que hicimos y enseñame el deporte que amaré de por vida. Le agradezco a tu papá por casi obligarme a
-        participar jaja de todo lo que me hubiese perdido, pero no fue así y fué por algo.</p>
-      <p>Ay mi estrellita linda, ten un maravilloso día, te estaré molestando todo el día, pero también trata de
-        disfrutarlo al 100 %, recuerda que es el último año siendo menor de edad jsjs, ya se viene lo serio.</p>
-      <p>Cuidate mucho. 🤍</p>
+    <div class="barra-wrap">
+      <div class="barra" id="barra"></div>
+    </div>
+    <p class="porcentaje" id="porcentaje">0%</p>
 
-      <div class="firma">
-        <p>Atentamente tu MEJOR amiga</p>
-        <p><strong>Lucerito Müller :3</strong></p>
-        <p>Te quiero. 🤍</p>
-      </div>
+    <div class="puntos" id="puntos">
+      <span></span><span></span><span></span>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      🌟 🎂 🌟 🎀 🌟
-      <p>Con todo el amor del mundo · Feliz cumple Karla ✨</p>
-      🌟 🎂 🌟 🎀 🌟
-    </div>
+    <a href="mensaje-karla.html" class="btn-entrar" id="btnEntrar">
+      💌 &nbsp; Abrir
+    </a>
+    <p class="nota-btn" id="notaBtn">GRACIAS POR TU AMISTAD 🤍</p>
 
   </div>
-  <audio id="musicaFondo" loop preload="auto">
-    <source src="./music/musica.mp3" type="audio/mpeg" />
-  </audio>
 
+  <script>
+    // Estrellas aleatorias
+    const wrap = document.getElementById("estrellas");
+    for (let i = 0; i < 60; i++) {
+      const s = document.createElement("div");
+      s.classList.add("estrella");
+      const size = Math.random() * 2.5 + 1;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%;
+        left:${Math.random()*100}%;
+        animation-duration:${Math.random()*3+2}s;
+        animation-delay:${Math.random()*4}s;
+      `;
+      wrap.appendChild(s);
+    }
+
+    // Barra de carga
+    const mensajes = [
+      "Cargando ... ✨",
+      "Realizando ajustes ⚙️",
+      "Cargando música ... 🎵",
+      "Limpiando ... 🧹",
+      "Corrigiendo errores  ... ⚒️",
+      "¡Terminado! 👍",
+    ];
+
+    const barraEl    = document.getElementById("barra");
+    const porcEl     = document.getElementById("porcentaje");
+    const subEl      = document.getElementById("subtitulo");
+    const puntosEl   = document.getElementById("puntos");
+    const btnEl      = document.getElementById("btnEntrar");
+    const notaEl     = document.getElementById("notaBtn");
+
+    let progreso = 0;
+    let msgIdx   = 0;
+
+    const tick = setInterval(() => {
+      progreso = Math.min(progreso + Math.random() * 5 + 2, 100);
+      barraEl.style.width    = progreso + "%";
+      porcEl.textContent     = Math.floor(progreso) + "%";
+
+      const nuevoIdx = Math.min(Math.floor((progreso / 100) * mensajes.length), mensajes.length - 1);
+      if (nuevoIdx !== msgIdx) {
+        msgIdx = nuevoIdx;
+        subEl.style.opacity = "0";
+        setTimeout(() => {
+          subEl.textContent  = mensajes[msgIdx];
+          subEl.style.opacity = "1";
+        }, 250);
+      }
+
+      if (progreso >= 100) {
+        clearInterval(tick);
+        setTimeout(() => {
+          puntosEl.style.display = "none";
+          subEl.textContent = "¡Revísalo! 💌";
+          btnEl.classList.add("visible");
+          notaEl.classList.add("visible");
+        }, 400);
+      }
+    }, 200);
+  </script>
 
 </body>
-<script src="script.js"></script>
-
 </html>

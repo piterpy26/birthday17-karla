@@ -20,3 +20,22 @@ function esperarInteraccion() {
   document.addEventListener("touchstart", activar, { once: true });
   document.addEventListener("click",      activar, { once: true });
 }
+
+// ── TOGGLE TEMA CLARO / OSCURO ──
+const btnTema = document.getElementById("btnTema");
+const root    = document.documentElement;
+
+const temaGuardado = localStorage.getItem("tema");
+if (temaGuardado === "light") {
+  root.classList.add("light");
+  btnTema.textContent = "🌙";
+} else {
+  btnTema.textContent = "☀️";
+}
+
+btnTema.addEventListener("click", () => {
+  root.classList.toggle("light");
+  const esClaro = root.classList.contains("light");
+  btnTema.textContent = esClaro ? "🌙" : "☀️";
+  localStorage.setItem("tema", esClaro ? "light" : "dark");
+});
